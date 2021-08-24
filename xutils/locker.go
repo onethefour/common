@@ -3,7 +3,7 @@ package xutils
 //对一个字符串加锁,
 //例如地址不能并发:
 //Lock(address)
-//defer Lock(address)
+//defer Unlock(address)
 
 import (
 	"sync"

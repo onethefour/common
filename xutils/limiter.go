@@ -10,6 +10,8 @@ import (
 var limiter sync.Map
 
 //地址不多可以这么干,多了要有回收机制,gocache
+//返回true,表示可以通行
+//返回false,限制通行
 func Limit(addr string, sec int64) bool {
 	value, ok := limiter.Load(addr)
 	if !ok {
