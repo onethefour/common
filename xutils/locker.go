@@ -10,19 +10,19 @@ import (
 )
 
 var (
-	mapLockers map[string]sync.Mutex
+	mapLockers map[string]*sync.Mutex
 	tmplock    sync.RWMutex
 )
 
 func init() {
-	mapLockers = make(map[string]sync.Mutex)
+	mapLockers = make(map[string]*sync.Mutex)
 }
 
 func Lock(key string) {
 	tmplock.Lock()
 	v, ok := mapLockers[key]
 	if !ok {
-		v = sync.Mutex{}
+		v = &sync.Mutex{}
 		mapLockers[key] = v
 	}
 	tmplock.Unlock()
